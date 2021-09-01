@@ -1,16 +1,22 @@
-# todo_list
+# to_do_list 
 
-A new Flutter project.
+### This is a flutter project that i made using the knowledge that i gain in my flutter class.
 
-## Getting Started
+It's a basic to do list, very simple and effective, that i think i needed for myself, just to remember a few things and do others, so i realized that i could do with all that i learned from my flutter class, and did it.
 
-This project is a starting point for a Flutter application.
+### It's design is very basic and simple, so it's likely to change someday
 
-A few resources to get you started if this is your first Flutter project:
+### Here some gifs of it working:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Adding a note:
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![add](https://user-images.githubusercontent.com/75546113/131590964-5c079b1b-b70f-4565-b6e0-d77269fdbb46.gif)
+
+## Editing a note:
+
+![edit](https://user-images.githubusercontent.com/75546113/131590973-d0e0b55a-906c-4a7c-9bd7-c9bba9a7391f.gif)
+
+## Deleting a note:
+
+![delete](https://user-images.githubusercontent.com/75546113/131590990-b04197a2-9395-4666-8c05-945590b4b4e5.gif)
+
