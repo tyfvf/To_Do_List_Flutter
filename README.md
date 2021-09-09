@@ -20,3 +20,8 @@ It's a basic to do list, very simple and effective, that i think i needed for my
 
 ![delete](https://user-images.githubusercontent.com/75546113/131590990-b04197a2-9395-4666-8c05-945590b4b4e5.gif)
 
+## New feature, checking on and out a note:
+
+![giphy](https://user-images.githubusercontent.com/75546113/132615520-425292d9-8085-454a-849a-31d2048f95d5.gif)
+
+
