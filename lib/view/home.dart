@@ -17,10 +17,15 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final List<Note> data;
 
-  _HomeState(this.data);
+  _HomeState(
+    this.data,
+  );
 
   ScrollController scrollController = ScrollController();
   bool closeContainer = false;
+  late List<bool> checkbox = List.generate(data.length, (index) => false);
+  late List<TextStyle> style =
+      List.generate(data.length, (index) => TextStyle());
 
   @override
   void initState() {
@@ -77,58 +82,78 @@ class _HomeState extends State<Home> {
     Note note = this.data.elementAt(index);
 
     return ListTile(
-        title: Text(note.title),
-        subtitle: Text(note.date),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            IconButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => EditNote(note)));
-              },
-              icon: Icon(
-                Icons.edit,
-                color: Colors.orange,
-              ),
+      title: Text(
+        note.title,
+        style: style[index],
+      ),
+      subtitle: Text(
+        note.date,
+        style: style[index],
+      ),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) => EditNote(note)));
+            },
+            icon: Icon(
+              Icons.edit,
+              color: Colors.orange,
             ),
-            IconButton(
-              onPressed: () async {
-                var repository = NoteDBRepository();
-                String message;
-                int register = await repository.remove(
-                  conditions: "id=?", 
-                  conditionsValue: [note.id],
-                );
+          ),
+          IconButton(
+            onPressed: () async {
+              var repository = NoteDBRepository();
+              String message;
+              int register = await repository.remove(
+                conditions: "id=?",
+                conditionsValue: [note.id],
+              );
 
-                if (register != 0) {
-                  message = "Note deleted with sucess.";
-                } else {
-                  message = "Failed to delete note.";
-                }
+              if (register != 0) {
+                message = "Note deleted with sucess.";
+              } else {
+                message = "Failed to delete note.";
+              }
 
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: Text("Report!"),
-                    content: Text(message),
-                    actions: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pushNamed("/");
-                        },
-                        child: Text("OK"),
-                      ),
-                    ],
-                  ),
-                );
-              },
-              icon: Icon(
-                Icons.delete,
-                color: Colors.red,
-              ),
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: Text("Report!"),
+                  content: Text(message),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed("/");
+                      },
+                      child: Text("OK"),
+                    ),
+                  ],
+                ),
+              );
+            },
+            icon: Icon(
+              Icons.delete,
+              color: Colors.red,
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+      leading: Checkbox(
+        value: checkbox[index],
+        onChanged: (bool? value) {
+          setState(() {
+            checkbox[index] = value!;
+            if (value == true) {
+              style[index] = TextStyle(decoration: TextDecoration.lineThrough);
+            } else {
+              style[index] = TextStyle();
+            }
+          });
+        },
+      ),
+    );
   }
 }
