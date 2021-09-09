@@ -22,6 +22,7 @@ It's a basic to do list, very simple and effective, that i think i needed for my
 
 ## New feature, checking on and out a note:
 
-![giphy](https://user-images.githubusercontent.com/75546113/132615520-425292d9-8085-454a-849a-31d2048f95d5.gif)
+![giphy (1)](https://user-images.githubusercontent.com/75546113/132756109-5034d776-da10-40f1-9161-eed90a15c899.gif)
+
 
 
