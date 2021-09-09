@@ -23,9 +23,6 @@ class _HomeState extends State<Home> {
 
   ScrollController scrollController = ScrollController();
   bool closeContainer = false;
-  late List<bool> checkbox = List.generate(data.length, (index) => false);
-  late List<TextStyle> style =
-      List.generate(data.length, (index) => TextStyle());
 
   @override
   void initState() {
@@ -84,11 +81,11 @@ class _HomeState extends State<Home> {
     return ListTile(
       title: Text(
         note.title,
-        style: style[index],
+        style: note.status == 1 ? TextStyle(decoration: TextDecoration.lineThrough) : TextStyle(),
       ),
       subtitle: Text(
         note.date,
-        style: style[index],
+        style: note.status == 1 ? TextStyle(decoration: TextDecoration.lineThrough) : TextStyle(),
       ),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
@@ -141,18 +138,32 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-      leading: Checkbox(
-        value: checkbox[index],
-        onChanged: (bool? value) {
-          setState(() {
-            checkbox[index] = value!;
-            if (value == true) {
-              style[index] = TextStyle(decoration: TextDecoration.lineThrough);
-            } else {
-              style[index] = TextStyle();
-            }
-          });
+      leading: IconButton(
+        onPressed: () async {
+          int newStatus;
+          if (note.status == 1) {
+            newStatus = 0;
+          } else {
+            newStatus = 1;
+          }
+
+          var repository = NoteDBRepository();
+          Note newNote = Note(
+            id: note.id,
+            title: note.title,
+            date: note.date,
+            status: newStatus
+          );
+
+          await repository.update(
+              entity: newNote, conditions: "id=?", conditionsValue: [note.id]);
+
+          Navigator.of(context).pushNamed("/");          
         },
+        icon: Icon(
+          Icons.done,
+          color: note.status == 1 ? Colors.blue : Colors.grey,
+        ),
       ),
     );
   }

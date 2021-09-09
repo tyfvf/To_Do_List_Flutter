@@ -16,7 +16,7 @@ class DBLocal {
       version: 1, 
       onCreate: (Database db, int version){
         db.execute(
-          "CREATE TABLE $table (id INTEGER PRIMARY KEY AUTOINCREMENT,title TEXT NOT NULL,date TEXT NOT NULL)"
+          "CREATE TABLE $table (id INTEGER PRIMARY KEY AUTOINCREMENT,title TEXT NOT NULL,date TEXT NOT NULL,status INTEGER NOT NULL)"
         );
       }
       );
