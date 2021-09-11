@@ -17,7 +17,7 @@ class _EditNoteState extends State<EditNote> {
 
   _EditNoteState(this.note);
 
-  final _titleController = TextEditingController();
+  TextEditingController _titleController = TextEditingController();
   final _dateController = TextEditingController();
 
   DateTime _date = DateTime.now();
@@ -29,6 +29,7 @@ class _EditNoteState extends State<EditNote> {
     super.initState();
 
     _dateController.text = _dateFormatter.format(_date);
+    _titleController = TextEditingController(text: note.title);
   }
 
   _handleDatePicker() async {
